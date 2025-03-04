@@ -1,11 +1,11 @@
 <?php
 
-namespace core\Routing;
+namespace Core\Routing;
 
-use admin\Controllers\PageAdminController;
-use core\Constants;
-use lk\Controllers\PageLkController;
-use public\Controllers\PagePublicController;
+use App\Admin\Controllers\PageAdminController;
+use App\Lk\Controllers\PageLkController;
+use App\Public\Controllers\PagePublicController;
+use Core\Constants;
 
 class Router
 {
@@ -68,6 +68,8 @@ class Router
             'lk'=>PageLkController::class,
             default => 'Контроллер ' . $section . 'отсутствует'
         };
+
+
 
         if (Routes::isRoute($path)) {
             $controller = new $path(self::getPagesFromUrl(),self::parseGetParam());
