@@ -8,9 +8,10 @@ class BaseController
 {
     public function __construct()
     {
-        echo '<br>Base<br>';
-        Libs::fenom();
+        //Libs::fenom('index.html');
+
         Libs::dotEnv();
+        //Libs::twig();
     }
 
 }
