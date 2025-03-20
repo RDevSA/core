@@ -2,8 +2,6 @@
 
 namespace Core\Builder;
 
-use Module_Header\ModuleBuilderInterface;
-
 class ModuleBuilder implements ModuleBuilderInterface
 {
     private Module $module;
@@ -23,7 +21,7 @@ class ModuleBuilder implements ModuleBuilderInterface
     public function setHtml($html):ModuleBuilder
     {
         $this->module->html = $html;
-        echo "ModuleBuilder: ".$html;
+        echo "<br>ModuleBuilder: ".$html."<br>";
         return $this;
     }
 
