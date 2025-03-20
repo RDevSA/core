@@ -2,37 +2,36 @@
 
 namespace Core\Builder;
 
-class ModuleBuilder implements ModuleBuilderInterface
+class ModuleBuilder
 {
-    private Module $module;
 
-    public function __construct(Module $module)
-    {
-        $this->module = $module;
-    }
-
+    private string $css;
+    private string $html;
+    private string $content;
 
     public function setContent($content):ModuleBuilder
     {
-        $this->module->content = $content;
+        $this->content = $content;
         return $this;
     }
 
     public function setHtml($html):ModuleBuilder
     {
-        $this->module->html = $html;
+        $this->html = $html;
         echo "<br>ModuleBuilder: ".$html."<br>";
         return $this;
     }
 
     public function setCss(string $css):ModuleBuilder
     {
-        $this->module->css = $css;
+        $this->css = $css;
+        echo "<br>ModuleBuilder: ".$css."<br>";
         return $this;
     }
 
-    public function build():Module
+    public function build():self
     {
-        return $this->module;
+        return new self();
     }
+
 }
