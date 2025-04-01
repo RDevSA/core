@@ -7,6 +7,7 @@ class ModuleBuilder
 
     private string $css;
     private string $html;
+    private string $js;
     private string $content;
 
     public function setContent($content):ModuleBuilder
@@ -28,6 +29,15 @@ class ModuleBuilder
         echo "<br>ModuleBuilder: ".$css."<br>";
         return $this;
     }
+
+    public function setJs(string $js): ModuleBuilder
+    {
+        $this->js = $js;
+        echo "<br>ModuleBuilder: ".$js."<br>";
+        return $this;
+    }
+
+
 
     public function build():self
     {
