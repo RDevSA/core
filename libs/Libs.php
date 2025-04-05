@@ -24,18 +24,12 @@ class Libs
         $fenom->display($temp);
     }
 
-    public static function twig()
+    public static function twig():void
     {
-        /*
-        $loader = new ArrayLoader([
-            'index' => 'Hello {{ name }}!',
-        ]);
-        $twig = new Environment($loader);
 
-        $twig->render('index', ['name' => 'Fabien']);
-        */
-
-        $loader = new FilesystemLoader($_SERVER['DOCUMENT_ROOT'].'app');
+        //$moduleTemplates = './app/modules';
+        $loader = new FilesystemLoader($_SERVER['DOCUMENT_ROOT'].'/app');
+        //$loader->addPath($moduleTemplates,'public');
         $twig = new Environment($loader, [
             'cache' => $_SERVER['DOCUMENT_ROOT'].'core/cache',
             'auto_reload' => true,
@@ -44,8 +38,11 @@ class Libs
         echo $template->render();
     }
 
-    public static function loader($path){
+    public static function loader($path):void
+    {
         $loader = new FilesystemLoader($_SERVER['DOCUMENT_ROOT'].'app');
+        $moduleTemplates = './app/modules';
+        $loader->addPath($moduleTemplates,'public');
         $twig = new Environment($loader, [
             'cache' => $_SERVER['DOCUMENT_ROOT'].'core/cache',
             'auto_reload' => true,
@@ -55,13 +52,7 @@ class Libs
 
     public static function render():void
     {
-        $loader = new FilesystemLoader($_SERVER['DOCUMENT_ROOT'].'app');
-        $twig = new Environment($loader, [
-            'cache' => $_SERVER['DOCUMENT_ROOT'].'core/cache',
-            'auto_reload' => true,
-        ]);
-        $template = $twig->load('index.html');
-        echo $template->render();
+       //echo $template->render();
     }
 
 }

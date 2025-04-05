@@ -20,6 +20,7 @@ class ModuleBuilder
     {
         $this->html = $html;
         echo "<br>ModuleBuilder: ".$html."<br>";
+
         return $this;
     }
 
