@@ -27,9 +27,9 @@ class Libs
     public static function twig():void
     {
 
-        //$moduleTemplates = './app/modules';
+        $moduleTemplates = './app/modules/module_header/view/html';
         $loader = new FilesystemLoader($_SERVER['DOCUMENT_ROOT'].'/app');
-        //$loader->addPath($moduleTemplates,'public');
+        $loader->addPath($moduleTemplates,'public');
         $twig = new Environment($loader, [
             'cache' => $_SERVER['DOCUMENT_ROOT'].'core/cache',
             'auto_reload' => true,
@@ -41,7 +41,7 @@ class Libs
     public static function loader($path):void
     {
         $loader = new FilesystemLoader($_SERVER['DOCUMENT_ROOT'].'app');
-        $moduleTemplates = './app/modules';
+        $moduleTemplates = './app/modules/module_header/view/html';
         $loader->addPath($moduleTemplates,'public');
         $twig = new Environment($loader, [
             'cache' => $_SERVER['DOCUMENT_ROOT'].'core/cache',

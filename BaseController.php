@@ -11,7 +11,7 @@ class BaseController
         //Libs::fenom('index.html');
 
         Libs::dotEnv();
-        Libs::twig();
+        //Libs::twig();
     }
 
 }
