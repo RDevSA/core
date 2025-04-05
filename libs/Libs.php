@@ -34,7 +34,7 @@ class Libs
             'cache' => $_SERVER['DOCUMENT_ROOT'].'core/cache',
             'auto_reload' => true,
         ]);
-        $template = $twig->load('index.html');
+        $template = $twig->load('index.html.twig');
         echo $template->render();
     }
 
