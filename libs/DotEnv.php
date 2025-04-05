@@ -1,0 +1,13 @@
+<?php
+
+namespace Core\libs;
+
+class DotEnv
+{
+    public static function dotEnv():void
+    {
+        $dotenv = \Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+        $dotenv->load();
+    }
+
+}

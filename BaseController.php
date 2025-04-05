@@ -2,7 +2,7 @@
 
 namespace Core;
 
-use Libs\Libs;
+use Core\libs\DotEnv;
 
 class BaseController
 {
@@ -10,7 +10,7 @@ class BaseController
     {
         //Libs::fenom('index.html');
 
-        Libs::dotEnv();
+        Dotenv::dotEnv();
         //Libs::twig();
     }
 
