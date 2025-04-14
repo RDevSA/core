@@ -2,6 +2,8 @@
 
 namespace Core\Builder;
 
+use Core\libs\Twig\Twig;
+
 class ModuleBuilder
 {
 
@@ -9,6 +11,13 @@ class ModuleBuilder
     private string $html;
     private string $js;
     private string $content;
+
+    private static function setTemplatePath(string $module):string
+    {
+        //return ROOT_MODULE.'/module_header/view/html';
+        return ROOT_MODULE.'/module_'.$module.'/view/html';
+
+    }
 
     public function setContent($content):ModuleBuilder
     {
@@ -19,6 +28,9 @@ class ModuleBuilder
     public function setHtml($html):ModuleBuilder
     {
         $this->html = $html;
+        Twig::setPrepend($html);
+        //Twig::setTwigLoader()->prependPath(self::setTemplatePath($html),'public');
+        //echo 'path = '.self::setTemplatePath('header');
         echo "<br>ModuleBuilder: ".$html."<br>";
 
         return $this;

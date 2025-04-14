@@ -6,7 +6,8 @@
       "App\\Lk\\": "../../app/lk",
       "Core\\": "../../core/",
       "Libs\\": "../libs/",
-      "Module_Header\\": "../../app/modules/module_header"
+      "Module_Header\\": "../../app/modules/module_header",
+      "Module_Menu\\": "../../app/modules/module_menu"
     }
   },
 
