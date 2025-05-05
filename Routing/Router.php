@@ -3,9 +3,8 @@
 namespace Core\Routing;
 
 use App\Admin\Controllers\PageAdminController;
-use App\Lk\Controllers\PageLkController;
+use Lk\Controller\PageLkController;
 use App\Public\Controllers\PagePublicController;
-use Core\Constants;
 
 class Router
 {
@@ -15,10 +14,11 @@ class Router
         $this->init();
     }
 
-    private function init()
+    private static function init()
     {
         self::getClassController();
     }
+
 
     /**
      * Получаем информацию о разделе приложения (public,admin и т.д.)
@@ -26,13 +26,12 @@ class Router
      */
     private static function getSectionFromUrl(): string
     {
-
         $url = explode('.', $_SERVER['HTTP_HOST']);
 
         return match (true){
-            in_array(Constants::SECTION_ADMIN,$url)=>Constants::SECTION_ADMIN,
-            in_array(Constants::SECTION_LK,$url)=>Constants::SECTION_LK,
-            default => Constants::SECTION_PUBLIC
+            in_array(APP_SECTION_ADMIN,$url)=>APP_SECTION_ADMIN,
+            in_array(APP_SECTION_LK,$url)=>APP_SECTION_LK,
+            default => APP_SECTION_PUBLIC
         };
 
     }
@@ -69,8 +68,6 @@ class Router
             default => 'Контроллер ' . $section . 'отсутствует'
         };
 
-
-
         if (Routes::isRoute($path)) {
             $controller = new $path(self::getPagesFromUrl(),self::parseGetParam());
             $controller->init();
@@ -79,12 +76,12 @@ class Router
         };
     }
 
-    private static function pathToObject()
+    /*private static function pathToObject()
     {
         $path = (object)self::getSectionFromUrl();
 
         return $path;
-    }
+    }*/
 
 
 }

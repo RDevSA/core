@@ -1,10 +1,9 @@
 <?php
 
-namespace Core\libs\Twig;
+namespace Core\Libs\Twig;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-
 class Twig
 {
     private static array $prepend;
@@ -12,20 +11,17 @@ class Twig
     public function init():void
     {
         $twig = new Environment(self::setTwigLoader(), [
-            'cache' => $_SERVER['DOCUMENT_ROOT'].'core/cache',
+            'cache' => $_SERVER['DOCUMENT_ROOT'].'/core/cache',
             'auto_reload' => true,
         ]);
         $template = $twig->load('index.html.twig');
         echo $template->render();
     }
 
-    public static function setTwigLoader():FilesystemLoader
+    public static function setPrepend(string $path): void
     {
-        $loader = new FilesystemLoader(ROOT);
-        foreach (self::getPrepend() as $template) {
-            $loader->prependPath($template,'public');
-        }
-        return $loader;
+        $moduleTemplate = APP_ROOT_MODULE.'/module_'.$path.'/view/html';
+        self::$prepend[] = $moduleTemplate;
     }
 
     public static function getPrepend(): array
@@ -33,10 +29,13 @@ class Twig
         return self::$prepend;
     }
 
-    public static function setPrepend(string $path): void
+    public static function setTwigLoader():FilesystemLoader
     {
-        $moduleTemplate = ROOT_MODULE.'/module_'.$path.'/view/html';
-        self::$prepend[] = $moduleTemplate;
+        $loader = new FilesystemLoader(APP_ROOT);
+        foreach (self::getPrepend() as $template) {
+            $loader->prependPath($template,'public');
+        }
+        return $loader;
     }
 
 }

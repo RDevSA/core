@@ -2,13 +2,20 @@
   "autoload": {
     "psr-4": {
       "App\\Admin\\": "../../app/admin",
-      "App\\Public\\": "../../app/public",
+
       "App\\Lk\\": "../../app/lk",
+      "Lk\\Controller\\": "../../app/lk/controllers",
+
+      "App\\Public\\": "../../app/public",
+
       "Core\\": "../../core/",
-      "Libs\\": "../libs/",
+      "Core\\Libs\\": "../../core/libs",
       "Module_Header\\": "../../app/modules/module_header",
       "Module_Menu\\": "../../app/modules/module_menu"
-    }
+
+
+    },
+    "files": ["../constants.php"]
   },
 
   "require": {

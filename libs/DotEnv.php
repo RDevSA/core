@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\libs;
+namespace Core\Libs;
 
 class DotEnv
 {

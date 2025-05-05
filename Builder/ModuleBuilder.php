@@ -15,7 +15,7 @@ class ModuleBuilder
     private static function setTemplatePath(string $module):string
     {
         //return ROOT_MODULE.'/module_header/view/html';
-        return ROOT_MODULE.'/module_'.$module.'/view/html';
+        return APP_ROOT_MODULE.'/module_'.$module.'/view/html';
 
     }
 
