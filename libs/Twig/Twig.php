@@ -3,20 +3,13 @@
 namespace Core\Libs\Twig;
 
 use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 use Twig\Loader\FilesystemLoader;
 class Twig
 {
     private static array $prepend;
-
-    public function init():void
-    {
-        $twig = new Environment(self::setTwigLoader(), [
-            'cache' => $_SERVER['DOCUMENT_ROOT'].'/core/cache',
-            'auto_reload' => true,
-        ]);
-        $template = $twig->load('index.html.twig');
-        echo $template->render();
-    }
 
     public static function setPrepend(string $path): void
     {
@@ -36,6 +29,19 @@ class Twig
             $loader->prependPath($template,'public');
         }
         return $loader;
+    }
+
+    public function init():void
+    {
+        $twig = new Environment(self::setTwigLoader(), [
+            'cache' => $_SERVER['DOCUMENT_ROOT'].'/core/cache',
+            'auto_reload' => true,
+        ]);
+
+        //echo $twig->render('index.html.twig');
+
+        $template = $twig->load('index.html.twig');
+        echo $template->renderBlock('title');
     }
 
 }

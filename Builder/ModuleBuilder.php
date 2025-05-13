@@ -2,7 +2,7 @@
 
 namespace Core\Builder;
 
-use Core\libs\Twig\Twig;
+use Core\Libs\Twig\Twig;
 
 class ModuleBuilder
 {
@@ -29,8 +29,6 @@ class ModuleBuilder
     {
         $this->html = $html;
         Twig::setPrepend($html);
-        //Twig::setTwigLoader()->prependPath(self::setTemplatePath($html),'public');
-        //echo 'path = '.self::setTemplatePath('header');
         echo "<br>ModuleBuilder: ".$html."<br>";
 
         return $this;
