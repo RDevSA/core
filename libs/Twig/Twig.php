@@ -38,7 +38,7 @@ class Twig
             'auto_reload' => true,
         ]);
 
-        echo $twig->render('index.html.twig');
+        echo $twig->render('test.html.twig');
 
         //$template = $twig->load('index.html.twig');
         //echo $template->renderBlock('title');

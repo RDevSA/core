@@ -11,7 +11,7 @@ class v2_Twig
 
     public function init()
     {
-        $loader = new FilesystemLoader(APP_ROOT);
+        $loader = new FilesystemLoader(APP_ROOT,'');
         $loader->prependPath(APP_ROOT_MODULE.'/module_header/view/html','public');
         $twig = new Environment($loader);
 
