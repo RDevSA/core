@@ -3,8 +3,9 @@
 namespace Core\Routing;
 
 use App\Admin\Controllers\PageAdminController;
+use Core\PagePublic\PagePublicController;
 use Lk\Controller\PageLkController;
-use App\Public\Controllers\PagePublicController;
+
 
 class Router
 {
