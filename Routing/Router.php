@@ -29,6 +29,7 @@ class Router
     {
         $url = explode('.', $_SERVER['HTTP_HOST']);
 
+        //TODO need to refactor
         return match (true){
             in_array(APP_SECTION_ADMIN,$url)=>APP_SECTION_ADMIN,
             in_array(APP_SECTION_LK,$url)=>APP_SECTION_LK,
