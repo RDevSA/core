@@ -72,7 +72,7 @@ class Router
 
         if (Routes::isRoute($path)) {
             $controller = new $path(self::getPagesFromUrl(),self::parseGetParam());
-            $controller->init();
+            $controller->index();
         } else {
             echo "Страница {$path} отсутствует" . '<br>';
         };

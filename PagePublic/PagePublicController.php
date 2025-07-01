@@ -8,14 +8,19 @@ use Module_Menu\MenuController;
 
 class PagePublicController extends BaseController
 {
+    private $service;
 
-    public function init()
+    public function index()
     {
+        $this->service=new PagePublicService();
 
-        echo '<br>'."Класс: ".__CLASS__;
+
+       /* echo '<br>'."Класс: ".__CLASS__;
         echo '<br>DB_HOST = '.$_ENV['DB_HOST'];
-        echo '<br>CONFIG_PAGES = '.CONFIG_PAGES.'<br>';
-        $this->includeModules();
+        echo '<br>CONFIG_PAGES = '.CONFIG_PAGES.'<br>';*/
+       print_r($this->service->getLayoutComponents());
+
+
 
         HeaderController::index();
         MenuController::index();
@@ -24,7 +29,6 @@ class PagePublicController extends BaseController
         $twig->init();
 
     }
-
 
 
 }
