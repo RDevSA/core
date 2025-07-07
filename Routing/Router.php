@@ -15,11 +15,26 @@ class Router
         $this->init();
     }
 
-    private static function init()
+    private function init()
     {
-        self::getClassController();
+        //self::getClassController();
+        $this->test();
     }
 
+    private function test():void
+    {
+       /* $url = explode('.', $_SERVER['HTTP_HOST']);
+        print_r($url);
+        $url2 = $_SERVER['REQUEST_URI'];
+        print_r($url2);
+        $page = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');;
+        print_r($page);*/
+
+        $url = $_SERVER['HTTP_HOST'];
+        print_r($url);
+        $url2 = $_SERVER['REQUEST_URI'];
+        print_r($url2);
+    }
 
     /**
      * Получаем информацию о разделе приложения (public,admin и т.д.)
@@ -44,10 +59,11 @@ class Router
      */
     private static function getPagesFromUrl(): array
     {
-        $url = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-        return $url ? explode('/', $url) : ['main'];
+        $page = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        return $page ? explode('/', $page) : ['main'];
     }
 
+    //TODO need to refactor (must receive any numbers of params and return array or object)
     /**
      * Возвращаем GET параметры (после знака ? в адресе страницы)
      * @return string
@@ -59,7 +75,8 @@ class Router
         return $getParam;
     }
 
-    private static function getClassController():void
+    //TODO need to refactor
+/*    private static function getClassController():void
     {
         $section = self::getSectionFromUrl();
 
@@ -76,7 +93,7 @@ class Router
         } else {
             echo "Страница {$path} отсутствует" . '<br>';
         };
-    }
+    }*/
 
     /*private static function pathToObject()
     {

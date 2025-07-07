@@ -10,15 +10,22 @@ class PagePublicController extends BaseController
 {
     private $service;
 
+    public function __construct()
+    {
+    }
+
+
     public function index()
     {
         $this->service=new PagePublicService();
 
 
-       /* echo '<br>'."Класс: ".__CLASS__;
+        echo '<br>'."Класс: ".__CLASS__;
         echo '<br>DB_HOST = '.$_ENV['DB_HOST'];
-        echo '<br>CONFIG_PAGES = '.CONFIG_PAGES.'<br>';*/
-       print_r($this->service->getLayoutComponents());
+        echo '<br>CONFIG_PAGES = '.CONFIG_PAGES.'<br>';
+
+       //print_r($this->service->getLayoutComponents());
+
 
 
 

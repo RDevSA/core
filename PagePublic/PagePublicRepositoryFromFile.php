@@ -3,19 +3,14 @@
 namespace Core\PagePublic;
 class PagePublicRepositoryFromFile
 {
-    public function getLayoutComponents():array
+    public function getAllComponents():array
     {
-        $config_pages = require_once CONFIG_PAGES;
-        $layouts = $config_pages["layouts"];
-
-        return $layouts;
+        return PAGE_COMPONENTS;
     }
 
-    public function getModules()
+    public function getModulesByPage(string $page):string
     {
         $config_pages = require_once CONFIG_PAGES;
-
-        $modules = $config_pages['modules']['main'];
-        return $modules;
+        return $config_pages[$page];
     }
 }

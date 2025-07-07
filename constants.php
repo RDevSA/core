@@ -9,4 +9,4 @@ defined('APP_ROOT_MODULE') or define('APP_ROOT_MODULE','./app/modules');
 
 defined('CONFIG_PAGES') or define('CONFIG_PAGES',APP_ROOT.'/config_pages.php');
 
-defined('APP_MODULES') or define('APP_MODULES', 'MODULES');
+defined('PAGE_COMPONENTS') or define('PAGE_COMPONENTS', ['header','menu']);
