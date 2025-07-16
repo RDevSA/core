@@ -8,16 +8,16 @@ use Module_Menu\MenuController;
 
 class PagePublicController extends BaseController
 {
-    private $service;
+    
 
-    public function __construct()
+    public function __construct(private PagePublicService $service = new PagePublicService())
     {
     }
 
 
     public function index()
     {
-        $this->service=new PagePublicService();
+        //$this->service=new PagePublicService();
 
 
         echo '<br>'."Класс: ".__CLASS__;
