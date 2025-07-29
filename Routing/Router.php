@@ -17,8 +17,8 @@ class Router
 
     private function init()
     {
-        //self::getClassController();
-        $this->test();
+        self::getClassController();
+        //$this->test();
     }
 
     private function test():void
@@ -30,10 +30,12 @@ class Router
         $page = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');;
         print_r($page);*/
 
-        $url = $_SERVER['HTTP_HOST'];
+        
+        /* $url = $_SERVER['HTTP_HOST'];
         print_r($url);
         $url2 = $_SERVER['REQUEST_URI'];
-        print_r($url2);
+        print_r($url2);  */
+       
     }
 
     /**
@@ -76,7 +78,7 @@ class Router
     }
 
     //TODO need to refactor
-/*    private static function getClassController():void
+   private static function getClassController():void
     {
         $section = self::getSectionFromUrl();
 
@@ -93,7 +95,7 @@ class Router
         } else {
             echo "Страница {$path} отсутствует" . '<br>';
         };
-    }*/
+    }
 
     /*private static function pathToObject()
     {
