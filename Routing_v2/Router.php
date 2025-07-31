@@ -1,6 +1,7 @@
 <?php
 
 namespace Core\Routing_v2;
+
 class Router {
     public function __construct()
     {
