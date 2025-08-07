@@ -30,4 +30,9 @@ final class Router {
         return $this;
     }
 
+    public function match(ServerRequestInterface $serverRequest):Route
+    {
+        return $this->matchFromPath($serverRequest->getUri()->getPath(),$serverRequest->getMethod());
+    }
+
 }
