@@ -2,9 +2,26 @@
 
 namespace Core\Routing_v2;
 
-class Router {
-    public function __construct()
+use ArrayIterator;
+use UrlGenerator;
+
+final class Router {
+
+    private const NO_ROUTE = 404;
+
+    private \ArrayIterator $routes;
+
+    private UrlGenerator $urlGenerator;
+
+    public function __construct(array $routes = [])
     {
-        echo 'Class Router connect';
+        $this->routes = new \ArrayIterator();
+        $this->urlGenerator = new UrlGenerator($this->routes);
+        foreach($routes as $route){
+            $this->add($route);
+        }
+
+        echo 'Class Router connect'; 
     }
+
 }
