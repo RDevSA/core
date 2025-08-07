@@ -24,4 +24,10 @@ final class Router {
         echo 'Class Router connect'; 
     }
 
+    public function add(Route $route):self
+    {
+        $this->routes->offsetSet($route->getName(),$route);
+        return $this;
+    }
+
 }
