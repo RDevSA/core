@@ -35,4 +35,22 @@ final class Router {
         return $this->matchFromPath($serverRequest->getUri()->getPath(),$serverRequest->getMethod());
     }
 
+    public function matchFromPath(string $path, string $method){
+
+        foreach($this->routes as $route){
+            if($route->match($path,$method)==false){
+                continue;
+            }
+            return $route;
+        }
+
+        throw new \Exception(
+             'No route found for ' . $method,
+             self::NO_ROUTE
+        );
+
+    }
+
+
+
 }
