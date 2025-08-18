@@ -6,6 +6,12 @@ namespace Core\Routing_v2;
 
 class Route {
 
+    /**
+     * @param string $name
+     * @param string $path
+     * @param array $params
+     * @param array $methods
+     */
     public function __construct(
         private string $name,
         private string $path,

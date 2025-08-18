@@ -16,6 +16,9 @@ final class Router {
 
     private UrlGenerator $urlGenerator;
 
+    /**
+     * @param array $routes
+     */
     public function __construct(array $routes = [])
     {
         $this->routes = new ArrayIterator();
@@ -27,21 +30,34 @@ final class Router {
         echo 'Class Router connect'; 
     }
 
+    /**
+     * @param Route $route
+     * @return $this
+     */
     public function add(Route $route):self
     {
         $this->routes->offsetSet($route->getName(),$route);
         return $this;
     }
 
+    /**
+     * @param ServerRequestInterface $serverRequest
+     * @return Route
+     * @throws Exception
+     */
     public function match(ServerRequestInterface $serverRequest):Route
     {
         return $this->matchFromPath($serverRequest->getUri()->getPath(),$serverRequest->getMethod());
     }
 
     /**
+     * @param string $path
+     * @param string $method
+     * @return Route
      * @throws Exception
      */
-    public function matchFromPath(string $path, string $method){
+    public function matchFromPath(string $path, string $method):Route
+    {
 
         foreach($this->routes as $route){
             if(!$route->match($path, $method)){
@@ -57,11 +73,19 @@ final class Router {
 
     }
 
+    /**
+     * @param string $name
+     * @param array $params
+     * @return string
+     */
     public function generateUri(string $name,array $params=[]):string
     {
         return $this->urlGenerator->generate($name,$params);
     }
 
+    /**
+     * @return UrlGenerator
+     */
     public function getUrlGenerator():UrlGenerator
     {
         return $this->urlGenerator;
