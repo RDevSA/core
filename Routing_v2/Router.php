@@ -3,19 +3,20 @@
 namespace Core\Routing_v2;
 
 use ArrayIterator;
+use Exception;
 use UrlGenerator;
 
 final class Router {
 
-    private const NO_ROUTE = 404;
+    private const int NO_ROUTE = 404;
 
-    private \ArrayIterator $routes;
+    private ArrayIterator $routes;
 
     private UrlGenerator $urlGenerator;
 
     public function __construct(array $routes = [])
     {
-        $this->routes = new \ArrayIterator();
+        $this->routes = new ArrayIterator();
         $this->urlGenerator = new UrlGenerator($this->routes);
         foreach($routes as $route){
             $this->add($route);
@@ -35,20 +36,33 @@ final class Router {
         return $this->matchFromPath($serverRequest->getUri()->getPath(),$serverRequest->getMethod());
     }
 
+    /**
+     * @throws Exception
+     */
     public function matchFromPath(string $path, string $method){
 
         foreach($this->routes as $route){
-            if($route->match($path,$method)==false){
+            if(!$route->match($path, $method)){
                 continue;
             }
             return $route;
         }
 
-        throw new \Exception(
+        throw new Exception(
              'No route found for ' . $method,
              self::NO_ROUTE
         );
 
+    }
+
+    public function generateUri(string $name,array $params=[]):string
+    {
+        return $this->urlGenerator->generate($name,$params);
+    }
+
+    public function getUrlGenerator():UrlGenerator
+    {
+        return $this->urlGenerator;
     }
 
 
