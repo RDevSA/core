@@ -6,6 +6,8 @@ namespace Core\Routing_v2;
 
 class Route {
 
+    private $vars = [];
+
     /**
      * @param string $name
      * @param string $path
@@ -35,7 +37,19 @@ class Route {
             $varName = trim($variable,'{\}');
             $regex = str_replace($variable,'(?P<' . $varName . '>[^/]++)', $regex);
         }
+
+        if(in_array($method,$this->getMethods())&&preg_match('^#'.$regex.'$#sD',self::trimPath($path),$matches)){
+            $values = array_filter($matches,static function($key){
+                return is_string($key);
+            },ARRAY_FILTER_USE_KEY);
+            foreach ($values as $key => $value) {
+                $this->vars[$key]=$value;
+            }
+            return true;
+        }
+        return false;
     }
+    
 
 
 }
