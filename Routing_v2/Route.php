@@ -51,7 +51,7 @@ class Route
     }
 
         /**
-         * Get the value of name
+         * @return string
          */ 
         public function getName():string
         {
@@ -59,7 +59,7 @@ class Route
         }
 
         /**
-         * Get the value of path
+         * @return string
          */ 
         public function getPath():string
         {
@@ -67,7 +67,7 @@ class Route
         }
 
         /**
-         * Get the value of params
+         * @return array
          */ 
         public function getParams():array
         {
@@ -75,7 +75,7 @@ class Route
         }
 
         /**
-         * Get the value of methods
+         * @return array
          */ 
         public function getMethods():array
         {
