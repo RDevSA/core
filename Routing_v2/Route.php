@@ -50,35 +50,63 @@ class Route
         return false;
     }
 
-        /**
-         * @return string
-         */ 
-        public function getName():string
-        {
-                return $this->name;
-        }
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
-        /**
-         * @return string
-         */ 
-        public function getPath():string
-        {
-                return $this->path;
-        }
+    /**
+     * @return string
+     */
+    public function getPath(): string
+    {
+        return $this->path;
+    }
 
-        /**
-         * @return array
-         */ 
-        public function getParams():array
-        {
-                return $this->params;
-        }
+    /**
+     * @return array
+     */
+    public function getParams(): array
+    {
+        return $this->params;
+    }
 
-        /**
-         * @return array
-         */ 
-        public function getMethods():array
-        {
-                return $this->methods;
-        }
+    /**
+     * @return array
+     */
+    public function getMethods(): array
+    {
+        return $this->methods;
+    }
+
+    public function getVarsNames(): array
+    {
+        preg_match_all('/{[^}]*}/', $this->path, $matches);
+        return reset($matches) ?? [];
+    }
+
+    public function hasVars(): bool
+    {
+        return $this->getVarsNames() !== [];
+    }
+
+    /**
+     * @return array
+     */
+    public function getVars(): array
+    {
+        return $this->vars;
+    }
+
+    /**
+     * @param string
+     * @return string
+     */
+    public static function trimPath(string $path):string
+    {
+        return '/'.rtrim(ltrim(trim($path),'/'),'/');
+    }
 }
