@@ -25,5 +25,16 @@ class UrlGenerator
         return self::resolveUri($route, $params);
     }
 
-
+    private static function resolveUri(Route $route, array $params = []):string
+    {
+        $uri = $route->getPath();
+        foreach($route->getVarsNames() as $variable){
+            $varName = trim($variable,'{\}');
+            if(array_key_exists($varName,$params)===false){
+                throw new InvalidArgumentException(sprintf('%s not found in parameters to generate url', $varName));
+            }
+            $uri = str_replace($variable,$params[$varName],$uri);
+        }
+        return $uri;
+    }
 }
