@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Core\Routing_v2;
 
+use InvalidArgumentException;
+
 class Route
 {
 
@@ -26,10 +28,15 @@ class Route
         private array $methods = ['GET']
     ) {
         if ($this->methods === []) {
-            throw new \InvalidArgumentException('HTTP methods argument was empty; must contain at least one method');
+            throw new InvalidArgumentException('HTTP methods argument was empty; must contain at least one method');
         }
     }
 
+    /**
+     * @param string $path
+     * @param string $method
+     * @return bool
+     */
     public function match(string $path, string $method): bool
     {
         $regex = $this->getPath();
@@ -82,6 +89,9 @@ class Route
         return $this->methods;
     }
 
+    /**
+     * @return array
+     */
     public function getVarsNames(): array
     {
         preg_match_all('/{[^}]*}/', $this->path, $matches);
@@ -105,8 +115,8 @@ class Route
      * @param string
      * @return string
      */
-    public static function trimPath(string $path):string
+    public static function trimPath(string $path): string
     {
-        return '/'.rtrim(ltrim(trim($path),'/'),'/');
+        return '/' . rtrim(ltrim(trim($path), '/'), '/');
     }
 }
