@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Core\Routing_v2;
 
 use ArrayIterator;
+use Core\Http\Message\ServerRequestInterface;
 use Exception;
-use UrlGenerator;
 
 final class Router {
 
@@ -41,6 +41,7 @@ final class Router {
     }
 
     /**
+     * Пока не используется
      * @param ServerRequestInterface $serverRequest
      * @return Route
      * @throws Exception
