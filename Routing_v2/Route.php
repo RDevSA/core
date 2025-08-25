@@ -112,7 +112,7 @@ class Route
     }
 
     /**
-     * @param string
+     * @param string $path
      * @return string
      */
     public static function trimPath(string $path): string
