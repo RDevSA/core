@@ -3,7 +3,7 @@
 declare(strict_types = 1);
 namespace Core\TestPagePublic;
 
-class TestPagePublic {
+class TestPagePublicController {
     public function getAll()
     {
         return json_encode([

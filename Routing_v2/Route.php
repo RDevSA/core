@@ -9,7 +9,7 @@ use InvalidArgumentException;
 class Route
 {
 
-    private $vars = [];
+    private array $vars = [];
 
     /**
      * @param string $name
