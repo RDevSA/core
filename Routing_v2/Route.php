@@ -45,7 +45,7 @@ class Route
             $regex = str_replace($variable, '(?P<' . $varName . '>[^/]++)', $regex);
         }
 
-        if (in_array($method, $this->getMethods()) && preg_match('^#' . $regex . '$#sD', self::trimPath($path), $matches)) {
+        if (in_array($method, $this->getMethods()) && preg_match('#^' . $regex . '$#sD', self::trimPath($path), $matches)) {
             $values = array_filter($matches, static function ($key) {
                 return is_string($key);
             }, ARRAY_FILTER_USE_KEY);
