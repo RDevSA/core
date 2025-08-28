@@ -4,6 +4,11 @@ declare(strict_types = 1);
 namespace Core\TestPagePublic;
 
 class TestPagePublicController {
+
+    public function __invoke():string
+    {
+        return 'Hello world!!';
+    }
     public function getAll()
     {
         return json_encode([
