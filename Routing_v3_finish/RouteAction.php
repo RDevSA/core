@@ -6,6 +6,7 @@ class RouteAction {
     public function init()
     {
         $route = new Router();
-        $route->matchFromPath($_SERVER['HTTP_HOST']);
+        //$route->matchFromPath($_SERVER['HTTP_HOST']);
+        $route->parseUrl();
     }
 }
