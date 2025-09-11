@@ -7,6 +7,6 @@ class RouteAction {
     {
         $route = new Router();
         //$route->matchFromPath($_SERVER['HTTP_HOST']);
-        $route->parseUrl();
+        $route->getObj();
     }
 }
