@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace Core\Routing_v3_finish;
 
+use Core\Utils;
+
 class Router {
     public function __construct()
     {
@@ -27,5 +29,10 @@ class Router {
         $url_admin_dev_prod =       'https://admin.dev.garden.ru/';
 
 
+    }
+
+    public function getObj(){
+        $obj = Utils::fromArray(['data' => 123]);
+        var_dump($obj->data);
     }
 }
