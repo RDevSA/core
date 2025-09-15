@@ -17,7 +17,13 @@ class Parser
         private    $url_admin_dev_prod =       'https://admin.dev.garden.ru/'
     ) {}
 
-    public function isTestServer() {}
+    private function parseUrl() {
+        
+    }
 
-    
+    public function isTestServer() {
+
+    }
+
+
 }
