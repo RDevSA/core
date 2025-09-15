@@ -32,7 +32,7 @@ class Router {
     }
 
     public function getObj(){
-        $obj = Utils::fromArray(['data' => 123]);
-        var_dump($obj->data);
+        $obj = Utils::fromArray(['data' => '123']);
+        var_dump($obj);
     }
 }
