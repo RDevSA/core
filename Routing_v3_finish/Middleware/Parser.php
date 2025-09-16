@@ -6,23 +6,38 @@ namespace Core\Routing_v3_finish\Middleware;
 
 class Parser
 {
-
     public function __construct(
-        private    $url =                      'https://garden.na4u.ru/',
-        private    $url_admin =                'https://admin.garden.na4u.ru/',
-        private    $url_dev =                  'https://dev.garden.na4u.ru/',
-        private    $url_admin_dev =            'https://admin.dev.garden.na4u.ru/',
-        private    $url_prod =                 'https://garden.ru/',
-        private    $url_admin_prod =           'https://admin.garden.ru/',
-        private    $url_admin_dev_prod =       'https://admin.dev.garden.ru/'
-    ) {}
+        private    $url =                      'garden.na4u.ru',
+        private    $url_admin =                'admin.garden.na4u.ru',
+        private    $url_dev =                  'dev.garden.na4u.ru',
+        private    $url_admin_dev =            'admin.dev.garden.na4u.ru',
+        private    $url_prod =                 'garden.ru',
+        private    $url_admin_prod =           'admin.garden.ru',
+        private    $url_admin_dev_prod =       'admin.dev.garden.ru',
+    ) {
 
-    private function parseUrl():int
+    }
+
+    private function urlToArray():array
     {
-        return count(explode('.',$this->url_admin));
+        return explode('.',$this->url_admin);
+    }
+
+    private function lengthUrl():int
+    {
+        return count($this->urlToArray());
     }
 
     public function isTestServer() {
+        if ($this->lengthUrl()>=3){
+            $revert_url = array_reverse($this->urlToArray());
+            if ($revert_url[1] === 'na4u'){
+                echo "Test domain TRUE";
+            }else{
+                echo "Test domain FALSE";
+            }
+        }
+
 
     }
 
