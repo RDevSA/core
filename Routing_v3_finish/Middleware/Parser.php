@@ -17,8 +17,9 @@ class Parser
         private    $url_admin_dev_prod =       'https://admin.dev.garden.ru/'
     ) {}
 
-    private function parseUrl() {
-        
+    private function parseUrl():int
+    {
+        return count(explode('.',$this->url_admin));
     }
 
     public function isTestServer() {
