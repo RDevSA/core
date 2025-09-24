@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Core\Routing_v3_finish;
 
+use Core\Config;
 use Core\Routing_v3_finish\Middleware\Parser;
 
 class RouteAction {
@@ -13,6 +14,8 @@ class RouteAction {
 
         $parser = new Parser();
         $parser->isTestServer();
+
+        var_dump(Config::getConfig('app_mode'));
 
     }
 }
