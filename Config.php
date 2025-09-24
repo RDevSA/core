@@ -29,4 +29,11 @@ class Config
     }
 
 
+    public static function getConfig2(){
+        $array = require_once __DIR__.'/config/sections.php';
+        $config = (object) $array;
+        return $config;
+    }
+
+
 }
