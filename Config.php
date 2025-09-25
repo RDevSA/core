@@ -4,6 +4,7 @@ namespace Core;
 
 class Config
 {
+
     private array $configArray;
 
     public function __construct()
@@ -11,11 +12,17 @@ class Config
         $this->configArray = require_once __DIR__.'/config/config.php';
     }
 
-    private function testGetConfigs()
+    /**
+     * @return array
+     */
+    public function testGetConfigs():array
     {
+        $merge = array();
         foreach ($this->configArray as $config){
             $config = require_once __DIR__.'/config/'.$config;
+            $merge[]=$config;
         }
+        return array_merge($merge);
     }
 
     /**
@@ -27,13 +34,5 @@ class Config
         $config = require_once __DIR__.'/config/sections.php';
         return $config[$key]??null;
     }
-
-
-    public static function getConfig2(){
-        $array = require_once __DIR__.'/config/sections.php';
-        $config = (object) $array;
-        return $config;
-    }
-
 
 }
