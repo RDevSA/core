@@ -23,7 +23,7 @@ class RouteAction {
         $parser = new Parser();
         $parser->isTestServer();
 
-        var_dump($this->config->testGetConfigs());
+        var_dump($this->config->get('app_section'));
         //var_dump(Config::getConfig('app_mode'));
         //var_dump(Config::getConfig2()->app_sections);
     }

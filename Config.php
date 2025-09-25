@@ -15,14 +15,15 @@ class Config
     /**
      * @return array
      */
-    public function testGetConfigs():array
+    public function get(string $key)
     {
         $merge = array();
         foreach ($this->configArray as $config){
             $config = require_once __DIR__.'/config/'.$config;
             $merge[]=$config;
         }
-        return array_merge($merge);
+        $test = array_merge($merge);
+        return $test;
     }
 
     /**
