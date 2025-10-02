@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Core;
 
+use InvalidArgumentException;
+use ValueError;
+
 class Utils
 {
+    const FILE_NOT_FOUND = 'file not found';
 
     public static function fromArray(array $data = [])
     {
@@ -14,5 +18,17 @@ class Utils
             $obj->{$property} = $data[$property]; // assign value to object
         }
         return $obj;
+    }
+
+    //TODO add error handler
+    /**
+     * @param string $fileName
+     * @return array
+     */
+    public static function fromFile($fileName): array {
+
+        $array = require_once __DIR__.'/config/'.$fileName.'.php';
+        return $array;
+        
     }
 }
