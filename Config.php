@@ -26,14 +26,4 @@ class Config
         return $test;
     }
 
-    /**
-     * @param string $key
-     * @return array|null
-     */
-    public static function getConfig(string $key):array|null
-    {
-        $config = require_once __DIR__.'/config/sections.php';
-        return $config[$key]??null;
-    }
-
 }
