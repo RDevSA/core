@@ -14,7 +14,7 @@ class Router {
     public function matchFromPath($host){
         $app_section = explode('.',$host);
         $length = count($app_section);
-        var_dump('app_section = ',$app_section,$length);
+        
         //$page ? explode('/', $page) : ['main'];
     }
 
