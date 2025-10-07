@@ -25,7 +25,7 @@ class Utils
      * @param string $fileName
      * @return array
      */
-    public static function fromFile($fileName): array {
+    public static function fromConfigFile($fileName): array {
 
         $array = require_once __DIR__.'/config/'.$fileName.'.php';
         return $array;
