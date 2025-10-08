@@ -13,10 +13,17 @@ class Router {
     }
 
     public function matchFromPath($host){
+
+        $config_sections = Utils::fromConfigFile('sections');
+        if(!Config::checkMatch($config_sections))return;
+
         $app_section = explode('.',$host);
-        $length = count($app_section);
-        
-        Config::checkMatch(Utils::fromConfigFile('sections'));
+        $merge_sections = array_merge($app_section);
+        print_r($merge_sections);
+        if (in_array($config_sections['test_domain'],$merge_sections)){
+            print_r('It is test domain');
+        }else {print_r('It is production domain');}
+
         //$page ? explode('/', $page) : ['main'];
     }
 
