@@ -9,7 +9,7 @@ class Config
 
     public function __construct()
     {
-        $this->configArray = require_once __DIR__.'/config/config.php';
+        $this->configArray = require_once __DIR__ . '/config/config.php';
     }
 
     /**
@@ -18,22 +18,33 @@ class Config
     public function get(string $key)
     {
         $merge = array();
-        foreach ($this->configArray as $config){
-            $config = require_once __DIR__.'/config/'.$config;
-            $merge[]=$config;
+        foreach ($this->configArray as $config) {
+            $config = require_once __DIR__ . '/config/' . $config;
+            $merge[] = $config;
         }
         $test = array_merge($merge);
         return $test;
     }
 
-    public static function checkMatch(array $arrays)
+    /**
+     * @param array $arrays
+     * @return bool
+     */
+    public static function checkMatch(array $arrays):bool
     {
-        $merge = array();
-        foreach($arrays as $array){
-            $merge[]=$array;
+        $sections = array();
+        foreach ($arrays as $array) {
+            $sections[] = $array;
         }
 
-        print_r(array_merge([],...$merge));
+        if (count(array_unique(array_merge(...$sections))) === count(array_merge(...$sections))){
+            print_r('Not found repeat');
+            return true;
+        }else{
+            print_r('Found repeat');
+            return false;
+        }
+
     }
 
 }
