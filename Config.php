@@ -26,4 +26,14 @@ class Config
         return $test;
     }
 
+    public static function checkMatch(array $arrays)
+    {
+        $merge = array();
+        foreach($arrays as $array){
+            $merge[]=$array;
+        }
+
+        print_r(array_merge([],...$merge));
+    }
+
 }
