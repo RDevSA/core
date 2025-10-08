@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Core\Routing_v3_finish;
 
+use Core\Config;
 use Core\Utils;
 
 class Router {
@@ -15,6 +16,7 @@ class Router {
         $app_section = explode('.',$host);
         $length = count($app_section);
         
+        Config::checkMatch(Utils::fromConfigFile('sections'));
         //$page ? explode('/', $page) : ['main'];
     }
 

@@ -17,13 +17,13 @@ class RouteAction {
     public function init()
     {
         $route = new Router();
-        //$route->matchFromPath($_SERVER['HTTP_HOST']);
+        $route->matchFromPath($_SERVER['HTTP_HOST']);
         //$route->getObj();
 
-        $parser = new Parser();
-        $parser->isTestServer();
+        //$parser = new Parser();
+        //$parser->isTestServer();
 
-        var_dump($this->config->get('app_section'));
+        //var_dump($this->config->get('app_section'));
         //var_dump(Config::getConfig('app_mode'));
         //var_dump(Config::getConfig2()->app_sections);
     }
