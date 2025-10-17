@@ -17,7 +17,7 @@ class RouteAction {
     public function init()
     {
         $route = new Router();
-        $route->matchFromPath($_SERVER['HTTP_HOST']);
+        $route->checkSection($_SERVER['HTTP_HOST'],'test_domain');
         //$route->getObj();
 
         //$parser = new Parser();

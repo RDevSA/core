@@ -6,28 +6,37 @@ use Core\Config;
 use Core\Utils;
 
 class Router {
-    public function __construct()
+
+    private array $config_sections;
+    public function __construct( )
     {
+        $this->config_sections = Utils::fromConfigFile('sections');
         //var_dump('Routing_v3_finish include!');
         //var_dump($_SERVER['HTTP_HOST']);
     }
 
-    public function matchFromPath($host){
-
-        $config_sections = Utils::fromConfigFile('sections');
-        if(!Config::checkMatch($config_sections))return;
+    public function checkSection($host,$section):bool|null
+    {
+        if(!Config::checkMatch($this->config_sections))return null;
 
         $app_section = explode('.',$host);
         $merge_sections = array_merge($app_section);
-        print_r($merge_sections);
-        $find = implode($config_sections['test_domain']);
+
+        $find = implode($this->config_sections[$section]);
 
         if (in_array($find,$merge_sections)){
             print_r('It is test domain');
-        }else {print_r('It is production domain');}
+            return true;
+        }else {
+            print_r('It is production domain');
+            return false;
+        }
 
         //$page ? explode('/', $page) : ['main'];
     }
+
+
+
 
 
     public function getObj(){
