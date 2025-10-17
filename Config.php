@@ -33,11 +33,13 @@ class Config
     public static function checkMatch(array $arrays):bool
     {
         $sections = array();
+        
         foreach ($arrays as $array) {
             $sections[] = $array;
         }
+        $merge = array_merge(...$sections);
 
-        if (count(array_unique(array_merge(...$sections))) === count(array_merge(...$sections))){
+        if (count(array_unique($merge)) === count($merge)){
             print_r('Not found repeat');
             return true;
         }else{

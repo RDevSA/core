@@ -20,7 +20,9 @@ class Router {
         $app_section = explode('.',$host);
         $merge_sections = array_merge($app_section);
         print_r($merge_sections);
-        if (in_array($config_sections['test_domain'],$merge_sections)){
+        $find = implode($config_sections['test_domain']);
+
+        if (in_array($find,$merge_sections)){
             print_r('It is test domain');
         }else {print_r('It is production domain');}
 
