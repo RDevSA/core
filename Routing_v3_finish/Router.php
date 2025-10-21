@@ -29,7 +29,7 @@ class Router {
         return array_merge($host_to_array);
     }
 
-    public function isTest():bool
+    public function isTestDomain():bool
     {
 
         $find = implode($this->config_sections['test_domain']);
@@ -47,7 +47,7 @@ class Router {
 
     public function test($host)
     {
-        $count = $this->isTest()?3:2;
+        $count = $this->isTestDomain()?3:2;
         $modified_host = array_splice($this->hostToArray($host='garden.ru'),-$count);
     }
 
