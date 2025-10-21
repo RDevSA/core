@@ -23,9 +23,9 @@ class Router {
         //var_dump($_SERVER['HTTP_HOST']);
     }
 
-    private function hostToArray($host='garden.ru'):array
+    private function hostToArray():array
     {
-        $host_to_array = explode('.',$host);
+        $host_to_array = explode('.',$this->url_prod);
         return array_merge($host_to_array);
     }
 
@@ -45,10 +45,15 @@ class Router {
         //$page ? explode('/', $page) : ['main'];
     }
 
-    public function test($host)
+    public function getSections()
     {
+        $test = $this->hostToArray();
         $count = $this->isTestDomain()?3:2;
-        $modified_host = array_splice($this->hostToArray($host='garden.ru'),-$count);
+        $t = count($test)-$count;
+        
+        $modified_host = $t>0?array_slice($test,0,$t):'main';
+
+        print_r($modified_host);
     }
 
 

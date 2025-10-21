@@ -16,9 +16,12 @@ class RouteAction {
 
     public function init()
     {
-        $route = new Router();
-        $route->isTestDomain(/*$_SERVER['HTTP_HOST']*/);
-        //$route->getObj();
+        $router = new Router();
+        $router->getSections();
+
+
+        //$router->isTestDomain(/*$_SERVER['HTTP_HOST']*/);
+        //$router->getObj();
 
         //$parser = new Parser();
         //$parser->isTestServer();
