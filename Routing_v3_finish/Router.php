@@ -13,28 +13,26 @@ class Router
     const IS_TEST_SERVER = 3;
     const NOT_TEST_SERVER = 2;
 
-    private    $url =                      'garden.na4u.ru';
-    private    $url_admin =                'admin.garden.na4u.ru';
-    private    $url_dev =                  'dev.garden.na4u.ru';
-    private    $url_admin_dev =            'admin.dev.garden.na4u.ru';
-    private    $url_prod =                 'garden.ru';
-    private    $url_admin_prod =           'admin.garden.ru';
-    private    $url_admin_dev_prod =       'admin.dev.garden.ru';
-
-    private    $url_admin_dev_5 =            'admin.dev.garden.na5u.ru';
-    private    $url_admin_6 =                'admin.garden.na6u.ru';
+    private $url = 'garden.na4u.ru';
+    private $url_admin = 'admin.garden.na4u.ru';
+    private $url_dev = 'dev.garden.na4u.ru';
+    private $url_admin_dev = 'admin.dev.garden.na4u.ru';
+    private $url_prod = 'garden.ru';
+    private $url_admin_prod = 'admin.garden.ru';
+    private $url_admin_dev_prod = 'admin.dev.garden.ru';
+    private $url_admin_dev_5 = 'admin.dev.garden.na5u.ru';
+    private $url_admin_6 = 'admin.garden.na6u.ru';
 
     private array $config_sections;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->config_sections = Utils::fromConfigFile('sections');
-        //var_dump('Routing_v3_finish include!');
-        //var_dump($_SERVER['HTTP_HOST']);
     }
 
     private function hostToArray(): array
     {
-        $host_to_array = explode('.', $this->url_admin_6);
+        $host_to_array = explode('.', $this->url_admin_dev);
         return array_merge($host_to_array);
     }
 
@@ -54,30 +52,17 @@ class Router
         //$page ? explode('/', $page) : ['main'];
     }
 
-    public function cutFromHost():int
+    public function cutFromHost(): int
     {
-        $test_domains = implode($this->config_sections['test_domain']);       
+        $test_domains = implode($this->config_sections['test_domain']);
 
 
         $length = in_array($test_domains,$this->hostToArray())?self::IS_TEST_SERVER:self::NOT_TEST_SERVER;
         print_r($length);
 
         return $length;
-        // $test = $this->hostToArray();
-        // $count = $this->isTestDomain() ? 3 : 2;
-        // $t = count($test) - $count;
 
-        // for
-        // //$indexOfTestDomain = $this->isTestDomain() ? array_search()
-
-
-        // $modified_host = $t > 0 ? array_slice($test, 0, $t) : 'main';
-
-        // print_r($modified_host);
     }
-
-
-
 
 
     public function getObj()
