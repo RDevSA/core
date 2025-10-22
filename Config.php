@@ -5,12 +5,6 @@ namespace Core;
 class Config
 {
 
-    private array $configArray;
-
-    public function __construct()
-    {
-        $this->configArray = require_once __DIR__ . '/config/config.php';
-    }
 
     /**
      * @return array
@@ -18,7 +12,7 @@ class Config
     public function get(string $key)
     {
         $merge = array();
-        foreach ($this->configArray as $config) {
+        foreach (Utils::fromConfigFile('config') as $config) {
             $config = require_once __DIR__ . '/config/' . $config;
             $merge[] = $config;
         }
