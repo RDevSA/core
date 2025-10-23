@@ -32,17 +32,18 @@ class Router
 
     private function hostToArray(): array
     {
-        $host_to_array = explode('.', $this->url_admin_dev_prod);
+        $host_to_array = explode('.', $this->url_dev);
         return array_merge($host_to_array);
     }
 
     public function isTestDomain():bool
     {
-        
         $domains = $this->config_sections['test_domain'];
 
         foreach($domains as $domain){
             in_array($domain,$this->hostToArray());
+
+            
             if(in_array($domain,$this->hostToArray())){
                 
                 return true;
@@ -55,14 +56,8 @@ class Router
 
     public function cutFromHost(): int
     {
-        $test_domains = implode($this->config_sections['test_domain']);
-
-
-        $length = in_array($test_domains,$this->hostToArray())?self::IS_TEST_SERVER:self::NOT_TEST_SERVER;
-
-        $t = $this->isTestDomain()?'true':'false';
-        print_r($t);
-
+        $length = $this->isTestDomain()?self::IS_TEST_SERVER:self::NOT_TEST_SERVER;
+        print_r('cutFromHost: '.$length);
         return $length;
 
     }
