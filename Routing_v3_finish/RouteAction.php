@@ -17,6 +17,7 @@ class RouteAction {
     public function init()
     {
         $router = new Router();
+        //$router->isTestDomain();
         $router->cutFromHost();
 
 

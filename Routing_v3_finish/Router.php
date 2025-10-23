@@ -32,22 +32,25 @@ class Router
 
     private function hostToArray(): array
     {
-        $host_to_array = explode('.', $this->url_admin_dev);
+        $host_to_array = explode('.', $this->url_admin_dev_prod);
         return array_merge($host_to_array);
     }
 
-    public function isTestDomain(): bool
+    public function isTestDomain()
     {
+        
+        $domains = $this->config_sections['test_domain'];
 
-        $find = implode($this->config_sections['test_domain']);
-
-        if (in_array($find, $this->hostToArray())) {
-            print_r('It is test domain');
-            return true;
-        } else {
-            print_r('It is production domain');
-            return false;
+        foreach($domains as $domain){
+            in_array($domain,$this->hostToArray());
+            if(in_array($domain,$this->hostToArray())){
+                
+                return true;
+            } 
         }
+        return false;
+
+        
 
         //$page ? explode('/', $page) : ['main'];
     }
@@ -58,7 +61,9 @@ class Router
 
 
         $length = in_array($test_domains,$this->hostToArray())?self::IS_TEST_SERVER:self::NOT_TEST_SERVER;
-        print_r($length);
+
+        $t = $this->isTestDomain()?'true':'false';
+        print_r($t);
 
         return $length;
 
