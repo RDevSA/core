@@ -36,7 +36,7 @@ class Router
         return array_merge($host_to_array);
     }
 
-    public function isTestDomain()
+    public function isTestDomain():bool
     {
         
         $domains = $this->config_sections['test_domain'];
@@ -49,8 +49,6 @@ class Router
             } 
         }
         return false;
-
-        
 
         //$page ? explode('/', $page) : ['main'];
     }
