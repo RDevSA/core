@@ -5,11 +5,14 @@ namespace Core\PagePublic;
 class PagePublicService
 {
 
-    public function __construct(
-        private PagePublicRepositoryFromFile $repository = new PagePublicRepositoryFromFile()
-    ){}
+    private PagePublicRepositoryFromFile $repository;
 
-    public function getLayoutComponents():array
+    public function __construct()
+    {
+        $this->repository = new PagePublicRepositoryFromFile();
+    }
+
+    public function getAllComponents(): array
     {
         return $this->repository->getAllComponents();
 

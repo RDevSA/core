@@ -5,6 +5,8 @@ class PagePublicRepositoryFromFile
 {
     public function getAllComponents():array
     {
+        print_r(__CLASS__.'getAllComponents: ');
+        print_r(PAGE_COMPONENTS);
         return PAGE_COMPONENTS;
     }
 
