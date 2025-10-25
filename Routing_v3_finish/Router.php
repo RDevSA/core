@@ -13,6 +13,9 @@ class Router
     const IS_TEST_SERVER = 3;
     const NOT_TEST_SERVER = 2;
 
+    private string $test_domain;
+
+
     private $url = 'garden.na4u.ru';
     private $url_admin = 'admin.garden.na4u.ru';
     private $url_dev = 'dev.garden.na4u.ru';
@@ -32,34 +35,41 @@ class Router
 
     private function hostToArray(): array
     {
-        $host_to_array = explode('.', $this->url_dev);
+        $host_to_array = explode('.', $this->url_admin_prod);
         return array_merge($host_to_array);
     }
 
-    public function isTestDomain():bool
+    private function isTestDomain(): bool
     {
         $domains = $this->config_sections['test_domain'];
 
-        foreach($domains as $domain){
-            in_array($domain,$this->hostToArray());
+        foreach ($domains as $domain) {
 
-            
-            if(in_array($domain,$this->hostToArray())){
-                
+            if (in_array($domain, $this->hostToArray())) {
+                $this->test_domain = $domain;
                 return true;
-            } 
+            }
         }
         return false;
 
         //$page ? explode('/', $page) : ['main'];
     }
 
-    public function cutFromHost(): int
+    /**
+     * @return array
+     */
+    public function cutFromHost(): array
     {
-        $length = $this->isTestDomain()?self::IS_TEST_SERVER:self::NOT_TEST_SERVER;
-        print_r('cutFromHost: '.$length);
-        return $length;
+        $length = $this->isTestDomain() ? self::IS_TEST_SERVER : self::NOT_TEST_SERVER;
+        $host = $this->hostToArray();
+        $splice = count($this->hostToArray())-$length;
+        return array_splice($host,0,$splice);
 
+    }
+
+    public function getTestDomain(): string
+    {
+        return $this->test_domain;
     }
 
 
