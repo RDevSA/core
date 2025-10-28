@@ -39,18 +39,25 @@ class Router
         return array_merge($host_to_array);
     }
 
-    private function isTestDomain(): bool
+    public function getIndex():int
     {
         $domains = $this->config_sections['test_domain'];
+        
+        $res = 0;
 
         foreach ($domains as $domain) {
+            $search = array_search($domain, $this->hostToArray());
 
-            if (in_array($domain, $this->hostToArray())) {
-                $this->test_domain = $domain;
-                return true;
+            if ($search>=0) {
+                $res = $search;
+                break;
+            }else if (!$search) {
+                $res = 10;
             }
+            
         }
-        return false;
+        echo $res;
+        return $res;
 
         //$page ? explode('/', $page) : ['main'];
     }
@@ -60,7 +67,7 @@ class Router
      */
     public function cutFromHost(): array
     {
-        $length = $this->isTestDomain() ? self::IS_TEST_SERVER : self::NOT_TEST_SERVER;
+        $length = $this->getIndex() ? self::IS_TEST_SERVER : self::NOT_TEST_SERVER;
         $host = $this->hostToArray();
         $splice = count($this->hostToArray())-$length;
         return array_splice($host,0,$splice);

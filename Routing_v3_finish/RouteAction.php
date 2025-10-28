@@ -21,8 +21,8 @@ class RouteAction {
             new Router()
         );*/
 
-        //$router->isTestDomain();
-        $router->cutFromHost();
+        $router->getIndex();
+        //$router->cutFromHost();
 
 
 
