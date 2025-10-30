@@ -22,7 +22,10 @@ class RouteAction {
         );*/
 
         $isTest = $router->isTestDomain()?'test':'prod';
-        echo 'Is test: '.$isTest;
+        echo 'Is test: '.$isTest.'<br>';
+
+        $isDev = $router->isDevMode()?'dev':'not dev';
+        echo 'Is dev: '.$isDev;
         //$router->cutFromHost();
 
 
