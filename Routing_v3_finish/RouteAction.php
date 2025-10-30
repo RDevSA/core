@@ -21,7 +21,8 @@ class RouteAction {
             new Router()
         );*/
 
-        $router->getIndex();
+        $isTest = $router->isTestDomain()?'test':'prod';
+        echo 'Is test: '.$isTest;
         //$router->cutFromHost();
 
 
