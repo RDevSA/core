@@ -10,12 +10,6 @@ use Core\Utils;
 class Router
 {
 
-    const IS_TEST_SERVER = 3;
-    const NOT_TEST_SERVER = 2;
-
-    private string $test_domain;
-
-
     private $url = 'garden.na4u.ru';
     private $url_admin = 'admin.garden.na4u.ru';
     private $url_dev = 'dev.garden.na4u.ru';
@@ -35,7 +29,7 @@ class Router
 
     private function hostToArray(): array
     {
-        $host_to_array = explode('.', $this->url_admin_dev_prod);
+        $host_to_array = explode('.', $this->url_admin_prod);
         return array_merge($host_to_array);
     }
 
@@ -56,19 +50,20 @@ class Router
     /**
      * @return array
      */
-    public function cutFromHost(): array
-    {
-        $length = $this->isTestDomain() ? self::IS_TEST_SERVER : self::NOT_TEST_SERVER;
-        $host = $this->hostToArray();
-        $splice = count($this->hostToArray())-$length;
-        return array_splice($host,0,$splice);
 
+
+    public function isDevMode():bool
+    {
+        $app_mode = $this->config_sections['app_mode'];
+        $first_item = $this->hostToArray()[0];
+        $second_item = $this->hostToArray()[1];
+
+        if(!in_array($first_item,$app_mode)){
+           return in_array($second_item,$app_mode);
+        }
+        return true;
     }
 
-    public function getTestDomain(): string
-    {
-        return $this->test_domain;
-    }
 
 
     public function getObj()
