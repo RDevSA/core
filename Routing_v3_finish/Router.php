@@ -42,7 +42,7 @@ class Router
             $res[]=in_array($domain,$this->hostToArray());
         }
 
-        return in_array(1,$res);
+        return in_array(true,$res);
 
         //$page ? explode('/', $page) : ['main'];
     }
