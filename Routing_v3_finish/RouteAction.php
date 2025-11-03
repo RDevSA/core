@@ -2,22 +2,12 @@
 declare(strict_types=1);
 namespace Core\Routing_v3_finish;
 
-use Core\Config;
-use Core\Routing_v3_finish\Middleware\Parser;
-
 class RouteAction {
-
-    private Config $config;
-    public function __construct(Config $config)
-    {
-        $this->config = $config;
-    }
-
 
     public function init()
     {
-        $router = new Router();
-        /*$router = new Routing(
+        $router = new Router(/*$_SERVER['HTTP_HOST']*/);
+        /*$router = new RoutingFromURL(
             new Router()
         );*/
 
@@ -26,7 +16,10 @@ class RouteAction {
 
         $isDev = $router->isDevMode()?'dev':'not dev';
         echo 'Is dev: '.$isDev;
-        //$router->cutFromHost();
+
+        $routingFromUrl = new RoutingFromURL($_SERVER['REQUEST_URI']);
+        $arr = $routingFromUrl->urlToArray();
+        print_r($arr);
 
 
 
@@ -38,7 +31,7 @@ class RouteAction {
         //$parser->isTestServer();
 
         //var_dump($this->config->get('app_section'));
-        //var_dump(Config::getConfig('app_mode'));
-        //var_dump(Config::getConfig2()->app_sections);
+        //var_dump(RouteUtils::getConfig('app_mode'));
+        //var_dump(RouteUtils::getConfig2()->app_sections);
     }
 }

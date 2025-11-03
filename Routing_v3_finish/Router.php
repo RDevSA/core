@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Core\Routing_v3_finish;
 
-use Core\Config;
 use Core\Utils;
 
 class Router
 {
-
     private $url = 'garden.na4u.ru';
     private $url_admin = 'admin.garden.na4u.ru';
     private $url_dev = 'dev.garden.na4u.ru';
@@ -22,48 +20,49 @@ class Router
 
     private array $config_sections;
 
-    public function __construct()
+    public function __construct(private readonly string $host = '')
     {
         $this->config_sections = Utils::fromConfigFile('sections');
     }
 
     private function hostToArray(): array
     {
-        $host_to_array = explode('.', $this->url_admin_prod);
+        $host_to_array = $this->host ?explode('.', $this->host): explode('.', $this->url_admin_6);
         return array_merge($host_to_array);
     }
 
-    public function isTestDomain():bool
+    /**
+     * @return bool
+     */
+    public function isTestDomain(): bool
     {
         $domains = $this->config_sections['test_domain'];
         $res = array();
 
-        foreach ($domains as $domain){
-            $res[]=in_array($domain,$this->hostToArray());
+        foreach ($domains as $domain) {
+            $res[] = in_array($domain, $this->hostToArray());
         }
 
-        return in_array(true,$res);
+        return in_array(true, $res);
 
         //$page ? explode('/', $page) : ['main'];
     }
 
+
     /**
-     * @return array
+     * @return bool
      */
-
-
-    public function isDevMode():bool
+    public function isDevMode(): bool
     {
         $app_mode = $this->config_sections['app_mode'];
         $first_item = $this->hostToArray()[0];
         $second_item = $this->hostToArray()[1];
 
-        if(!in_array($first_item,$app_mode)){
-           return in_array($second_item,$app_mode);
+        if (!in_array($first_item, $app_mode)) {
+            return in_array($second_item, $app_mode);
         }
         return true;
     }
-
 
 
     public function getObj()

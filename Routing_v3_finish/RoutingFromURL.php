@@ -1,0 +1,23 @@
+<?php
+
+namespace Core\Routing_v3_finish;
+
+use Core\Utils;
+
+class RoutingFromURL
+{
+
+
+    public function __construct(private readonly string $url)
+    {
+
+    }
+
+    public function urlToArray(): array
+    {
+        $trim_url = rtrim(ltrim($this->url,'/'),'/');
+        $url_to_array = explode('/', $trim_url);
+        return array_merge($url_to_array);
+    }
+
+}

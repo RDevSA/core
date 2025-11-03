@@ -1,24 +1,11 @@
 <?php
 
-namespace Core;
+namespace Core\Routing_v3_finish;
 
-class Config
+use Core\Utils;
+
+class RouteUtils
 {
-
-
-    /**
-     * @return array
-     */
-    public function get(string $key)
-    {
-        $merge = array();
-        foreach (Utils::fromConfigFile('config') as $config) {
-            $config = require_once __DIR__ . '/config/' . $config;
-            $merge[] = $config;
-        }
-        $test = array_merge($merge);
-        return $test;
-    }
 
     /**
      * @param array $arrays
