@@ -20,4 +20,9 @@ class RoutingFromURL
         return array_merge($url_to_array);
     }
 
+    public function getController ():string
+    {
+        return $this->urlToArray()[0]?:'main';
+    }
+
 }

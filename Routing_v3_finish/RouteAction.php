@@ -15,10 +15,10 @@ class RouteAction {
         echo 'Is test: '.$isTest.'<br>';
 
         $isDev = $router->isDevMode()?'dev':'not dev';
-        echo 'Is dev: '.$isDev;
+        echo 'Is dev: '.$isDev.'<br>';
 
         $routingFromUrl = new RoutingFromURL($_SERVER['REQUEST_URI']);
-        $arr = $routingFromUrl->urlToArray();
+        $arr = $routingFromUrl->getController().'<br>';
         print_r($arr);
 
 
