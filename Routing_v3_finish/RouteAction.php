@@ -13,7 +13,8 @@ class RouteAction {
             new Router()
         );*/
 
-
+        Dotenv::dotEnv($router->isTestDomain());
+        //TODO можно удалить
         $isTest = $router->isTestDomain()?'test':'prod';
         echo 'Is test: '.$isTest.'<br>';
 
