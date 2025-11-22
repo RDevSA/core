@@ -4,9 +4,10 @@ namespace Core\Libs;
 
 class DotEnv
 {
-    public static function dotEnv():void
+    public static function dotEnv(bool $isDev):void
     {
-        $dotenv = \Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+        $nameDevFile = $isDev?'.env.dev':'.env';
+        $dotenv = \Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'],$nameDevFile);
         $dotenv->load();
     }
 
