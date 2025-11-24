@@ -13,7 +13,7 @@ class RouteAction {
             new Router()
         );*/
 
-        Dotenv::dotEnv($router->isTestDomain());
+        //Dotenv::dotEnv($router->isTestDomain());
         //TODO можно удалить
         $isTest = $router->isTestDomain()?'test':'prod';
         echo 'Is test: '.$isTest.'<br>';
@@ -23,6 +23,8 @@ class RouteAction {
         $isDev = $router->isDevMode()?'dev':'not dev';
         echo 'Is dev: '.$isDev.'<br>';
         echo 'ENV: '.$_ENV['DB_USERNAME'].'<br>';
+
+        //DotEnv::dotEnv($router->isTestDomain(),$router->isDevMode());
 
         $routingFromUrl = new RoutingFromURL($_SERVER['REQUEST_URI']);
         $arr = $routingFromUrl->getController().'<br>';
