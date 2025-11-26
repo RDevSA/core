@@ -5,22 +5,21 @@ namespace Core\Libs;
 class DotEnv
 {
 
-    public static function dotEnv(bool $isDev): void
+    public static function dotEnv(bool $isTest, bool $isDev): void
     {
-        //$loadEnv = $isTestDomain?self::loadTestEnv():self::loadProdEnv();
-        $nameDevFile = $isDev ? '.env.dev' : '.env';
+        $nameDevFile = $isTest?self::loadTestEnv($isDev):self::loadProdEnv($isDev);
         $dotenv = \Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'], 'env/'.$nameDevFile);
         $dotenv->load();
     }
 
-    private static function loadTestEnv()
+    private static function loadTestEnv(bool $isDev):string
     {
-
+        return $isDev?'.env.test_server.dev':'.env.test_server';
     }
 
-    private static function loadProdEnv()
+    private static function loadProdEnv(bool $isDev):string
     {
-
+        return $isDev?'.env.dev':'.env';
     }
 
 }

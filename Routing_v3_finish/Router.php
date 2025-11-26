@@ -27,7 +27,7 @@ class Router
 
     private function hostToArray(): array
     {
-        $host_to_array = $this->host ?explode('.', $this->host): explode('.', $this->url_admin_6);
+        $host_to_array = $this->host ?explode('.', $this->host): explode('.', $this->url_admin_prod);
         return array_merge($host_to_array);
     }
 
