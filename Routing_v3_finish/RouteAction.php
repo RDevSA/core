@@ -3,14 +3,16 @@ declare(strict_types=1);
 namespace Core\Routing_v3_finish;
 
 use Core\Libs\DotEnv;
+use Core\Routing_v3_finish\Parsing\ParseHost;
+use Core\Routing_v3_finish\Parsing\ParseURL;
 
 class RouteAction {
 
     public function init()
     {
-        $router = new Router($_SERVER['HTTP_HOST']);
-        /*$router = new RoutingFromURL(
-            new Router()
+        $router = new ParseHost($_SERVER['HTTP_HOST']);
+        /*$router = new ParseURL(
+            new ParseHost()
         );*/
         Dotenv::dotEnv($router->isTestDomain(),$router->isDevMode());
 
@@ -25,7 +27,7 @@ class RouteAction {
         echo 'ENV: '.$_ENV['DB_USERNAME'].'<br>';
 
 
-        $routingFromUrl = new RoutingFromURL($_SERVER['REQUEST_URI']);
+        $routingFromUrl = new ParseURL($_SERVER['REQUEST_URI']);
         $arr = $routingFromUrl->getController().'<br>';
         print_r($arr);
 

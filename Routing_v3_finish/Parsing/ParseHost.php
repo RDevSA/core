@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Core\Routing_v3_finish;
+namespace Core\Routing_v3_finish\Parsing;
 
 use Core\Utils;
 
-class Router
+class ParseHost
 {
     private $url = 'garden.na4u.ru';
     private $url_admin = 'admin.garden.na4u.ru';

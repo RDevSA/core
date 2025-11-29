@@ -27,7 +27,7 @@ final class Router {
             $this->add($route);
         }
 
-        //echo 'Class Router connect';
+        //echo 'Class ParseHost connect';
     }
 
     /**

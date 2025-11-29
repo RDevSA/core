@@ -1,10 +1,8 @@
 <?php
 
-namespace Core\Routing_v3_finish;
+namespace Core\Routing_v3_finish\Parsing;
 
-use Core\Utils;
-
-class RoutingFromURL
+class ParseURL
 {
 
 
