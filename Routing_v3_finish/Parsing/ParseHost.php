@@ -27,7 +27,7 @@ class ParseHost
 
     private function hostToArray(): array
     {
-        $host_to_array = $this->host ?explode('.', $this->host): explode('.', $this->url_admin_prod);
+        $host_to_array = $this->host ?explode('.', $this->host): explode('.', $this->url_dev);
         return array_merge($host_to_array);
     }
 
@@ -58,10 +58,21 @@ class ParseHost
         $first_item = $this->hostToArray()[0];
         $second_item = $this->hostToArray()[1];
 
-        if (!in_array($first_item, $app_mode)) {
-            return in_array($second_item, $app_mode);
+        return in_array($first_item, $app_mode) || in_array($second_item, $app_mode);
+    }
+
+    public function getAppSection():string|bool
+    {
+
+        $first_item = $this->hostToArray()[0];
+        $finds = $this->config_sections['app_section'];
+
+        $section = in_array($first_item,$finds);
+        if (!$section && $this->isDevMode() || !$section && !$this->isDevMode()){
+            $first_item = 'public';
         }
-        return true;
+
+        return $first_item;
     }
 
 

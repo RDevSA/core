@@ -10,7 +10,7 @@ class RouteAction {
 
     public function init()
     {
-        $router = new ParseHost($_SERVER['HTTP_HOST']);
+        $router = new ParseHost(/*$_SERVER['HTTP_HOST']*/);
         /*$router = new ParseURL(
             new ParseHost()
         );*/
@@ -25,6 +25,13 @@ class RouteAction {
         $isDev = $router->isDevMode()?'dev':'not dev';
         echo 'Is dev: '.$isDev.'<br>';
         echo 'ENV: '.$_ENV['DB_USERNAME'].'<br>';
+
+
+        //TODO можно удалить
+        $appSection = $router->getAppSection();
+        echo "appSection: $appSection <br>";
+
+
 
 
         $routingFromUrl = new ParseURL($_SERVER['REQUEST_URI']);
