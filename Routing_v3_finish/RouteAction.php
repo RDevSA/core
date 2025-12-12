@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace Core\Routing_v3_finish;
 
-use Core\Libs\DotEnv;
+use Core\Libs\DotEnv\DotEnv;
 use Core\Routing_v3_finish\Parsing\ParseHost;
 use Core\Routing_v3_finish\Parsing\ParseURL;
 
